@@ -63,7 +63,7 @@ export default function Home() {
   return (
     <main>
       <Counter />
-      <div className="prose prose-invert">
+      <div className="prose prose-invert prose-pre:mt-0">
         <div className="my-7"></div>
         <h2 className="mb-1 text-2xl font-medium leading-9">
           Behind the scenes
