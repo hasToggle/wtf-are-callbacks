@@ -13,12 +13,12 @@ const Label = ({
   return (
     <div
       className={clsx('rounded-full px-1.5 shadow-[0_0_1px_4px_black]', {
-        'bg-zinc-800 text-zinc-500': color === 'default',
-        'bg-vercel-pink text-pink-100': color === 'pink',
-        'bg-vercel-blue text-blue-100': color === 'blue',
-        'bg-vercel-cyan text-cyan-100': color === 'cyan',
-        'bg-vercel-violet text-violet-100': color === 'violet',
-        'bg-vercel-orange text-orange-100': color === 'orange',
+        'bg-gray-800 text-gray-300': color === 'default',
+        'bg-hastoggle-pink text-pink-100': color === 'pink',
+        'bg-hastoggle-blue text-blue-100': color === 'blue',
+        'bg-hastoggle-cyan text-cyan-100': color === 'cyan',
+        'bg-hastoggle-violet text-violet-100': color === 'violet',
+        'bg-hastoggle-orange text-orange-100': color === 'orange',
         'animate-[highlight_1s_ease-in-out_1]': animateRerendering,
       })}
     >
@@ -44,13 +44,13 @@ export const Boundary = ({
       className={clsx('relative rounded-xl border border-dashed', {
         'p-5': size === 'small',
         'p-9': size === 'default',
-        'border-zinc-700': color === 'default',
-        'border-vercel-pink': color === 'pink',
-        'border-vercel-blue': color === 'blue',
-        'border-vercel-cyan': color === 'cyan',
-        'border-vercel-violet': color === 'violet',
-        'border-vercel-orange': color === 'orange',
-        'animate-[rerender_1s_ease-in-out_1] text-vercel-pink':
+        'border-gray-700': color === 'default',
+        'border-hastoggle-pink': color === 'pink',
+        'border-hastoggle-blue': color === 'blue',
+        'border-hastoggle-cyan': color === 'cyan',
+        'border-hastoggle-violet': color === 'violet',
+        'border-hastoggle-orange': color === 'orange',
+        'animate-[rerender_1s_ease-in-out_1] text-hastoggle-pink':
           animateRerendering,
       })}
     >

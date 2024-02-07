@@ -1,20 +1,27 @@
 import clsx from 'clsx';
+import { Ping } from './ping';
 
 export default function Button({
-  kind = 'default',
+  variant = 'default',
+  focus = false,
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  kind?: 'default' | 'error';
+  variant?: 'default' | 'pink';
+  focus?: boolean;
 }) {
   return (
-    <button
-      className={clsx('rounded-lg  px-3 py-1 text-sm font-medium', {
-        'bg-zinc-700 text-zinc-100 hover:bg-zinc-500 hover:text-white':
-          kind === 'default',
-        'bg-red-600 text-red-50 hover:bg-red-500 hover:text-white':
-          kind === 'error',
-      })}
-      {...props}
-    />
+    <span className="relative inline-flex">
+      <button
+        className={clsx(
+          'mt-3 inline-flex items-center rounded-md bg-slate-800 px-12 py-2 text-sm font-semibold leading-6 shadow ring-1 ring-slate-200/20 transition duration-150 ease-in-out disabled:cursor-not-allowed disabled:opacity-70',
+          {
+            'text-blue-400 hover:text-blue-300': variant === 'default',
+            'text-pink-500 hover:text-pink-400': variant === 'pink',
+          },
+        )}
+        {...props}
+      />
+      {focus && <Ping />}
+    </span>
   );
 }
