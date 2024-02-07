@@ -28,7 +28,7 @@ export default function RootLayout({
           <div className="bg-ht-border-gradient rounded-lg p-px shadow-lg shadow-black/20">
             <div className="rounded-lg bg-black p-3.5 lg:p-6">{children}</div>
           </div>
-          {/* <Byline className="" /> */}
+          <Byline />
         </div>
       </body>
     </html>

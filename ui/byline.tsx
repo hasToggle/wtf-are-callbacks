@@ -1,10 +1,8 @@
 import { Logo } from '@/ui/logo';
 
-export default function Byline({ className }: { className: string }) {
+export default function Byline() {
   return (
-    <div
-      className={`${className} bg-ht-border-gradient inset-x-0 bottom-3 mx-3 rounded-lg p-px shadow-lg shadow-black/20`}
-    >
+    <div className="bg-ht-border-gradient inset-x-0 bottom-3 mx-3 rounded-lg p-px shadow-lg shadow-black/20">
       <div className="flex flex-col justify-between space-y-2 rounded-lg bg-black p-3.5 lg:px-5 lg:py-3">
         <div className="flex items-center gap-x-1.5">
           <div className="text-sm text-gray-400">By</div>
@@ -15,7 +13,7 @@ export default function Byline({ className }: { className: string }) {
             rel="noreferrer"
           >
             <div className="">
-              <Logo className="inline-block h-4 w-auto" />
+              <Logo className="inline-block h-3 w-auto" />
             </div>
           </a>
         </div>
