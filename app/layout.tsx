@@ -3,6 +3,7 @@ import Byline from '@/ui/byline';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://how-usestate-works.vercel.app'),
   title: {
     default: 'React useState',
     template: '%s | React useState',
