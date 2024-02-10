@@ -1,6 +1,9 @@
+'use client';
+
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { Code } from '@/ui/code';
 import { Counter } from './counter';
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+import { CodeDisplay } from './code-display';
 
 const counterJsx = `
 \`\`\`js showLineNumbers title="counter.jsx"
@@ -60,6 +63,19 @@ export default function Counter() {
 `;
 
 export default function Home() {
+  const codeSnippet = `
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <p>You clicked {count} times.</p>
+      <button onClick={() => setCount(count + 1)}>
+        +1
+      </button>
+    </div>
+  );
+}
+  `.trim();
   return (
     <main>
       <Counter />
@@ -72,6 +88,7 @@ export default function Home() {
           Look at the code below; it’s the above counter component which shows
           the current count and a button to increase that count by 1.
         </p>
+        <CodeDisplay code={codeSnippet} />
         {/* @ts-expect-error Async Server Component */}
         <Code code={counterJsx} />
         <div className="mb-10"></div>

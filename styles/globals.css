@@ -5,6 +5,20 @@
 :root {
     color-scheme: dark;
   }
+
+  @keyframes highlightFadeIn {
+    from {
+      background-color: transparent;
+    }
+    to {
+      background-color: #808080; /* Your highlight color */
+    }
+  }
+  
+  .highlighted-line {
+    animation: highlightFadeIn 0.2s ease-in-out forwards;
+  }
+  
   
   body {
     @apply bg-zinc-900 text-zinc-100;
