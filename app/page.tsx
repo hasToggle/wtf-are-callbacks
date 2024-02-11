@@ -72,7 +72,7 @@ export default function Home() {
           Look at the code below; it’s the above counter component which shows
           the current count and a button to increase that count by 1.
         </p>
-        {/* @ts-expect-error Async Server Component */}
+        {/* @ts-ignore Async Server Component */}
         <Code code={counterJsx} />
         <div className="mb-10"></div>
         <p className="my-3">
@@ -81,7 +81,7 @@ export default function Home() {
           longer busy and then re-renders the counter component. Until then, the
           counter component shows the old value.
         </p>
-        {/* @ts-expect-error Async Server Component */}
+        {/* @ts-ignore Async Server Component */}
         <Code code={counterJsx_outdated} />
         <p className="my-3">
           What does re-rendering mean? It means that React{' '}
@@ -90,7 +90,7 @@ export default function Home() {
           executed again, from line 1 until line 14. But this time, useState
           gets the internal value of the state variable.
         </p>
-        {/* @ts-expect-error Async Server Component */}
+        {/* @ts-ignore Async Server Component */}
         <Code code={counterJsx_updating} />
         <p className="my-3">
           If the original value was 0 and you clicked the button once, the new

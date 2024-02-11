@@ -180,8 +180,13 @@ export function Counter() {
                 }}
               >
                 <div className="flex flex-col items-center justify-center gap-y-6 p-4 text-white sm:p-24">
-                  You clicked {state.count}{' '}
-                  {state.count === 1 ? 'time' : 'times'}.
+                  <div>
+                    You clicked{' '}
+                    <span className="mx-1 rounded-md bg-gray-700 px-3 py-2">
+                      {state.count}
+                    </span>{' '}
+                    {state.count === 1 ? 'time' : 'times'}.
+                  </div>
                   <Button
                     onClick={() => {
                       dispatch({ type: 'updating' })
