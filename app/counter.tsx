@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useReducer, type Reducer } from 'react'
+import { motion } from 'framer-motion'
 import clsx from 'clsx'
 import { Boundary } from '@/ui/boundary'
 import Button from '@/ui/button'
@@ -85,6 +86,21 @@ export function Counter() {
     setComponentToShow('buttonDisplay')
   }
 
+  const containerVariants = {
+    initial: {
+      opacity: 0,
+      scale: 0.75,
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.75,
+    },
+  }
+
   return (
     <>
       <Boundary
@@ -134,28 +150,51 @@ export function Counter() {
             animateRerendering={state.animateRerendering}
           >
             {componentToShow === 'codeDisplay' && (
-              <CodeDisplay
-                code={codeSnippet}
-                onAnimationComplete={handleAnimationComplete}
-              />
+              <motion.div
+                key="codeDisplay"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.5 }}
+              >
+                <CodeDisplay
+                  code={codeSnippet}
+                  onAnimationComplete={handleAnimationComplete}
+                />
+              </motion.div>
             )}
 
             {componentToShow === 'buttonDisplay' && (
-              <div className="flex flex-col items-center justify-center gap-y-6 p-4 text-white sm:p-24">
-                You clicked {state.count} {state.count === 1 ? 'time' : 'times'}
-                .
-                <Button
-                  onClick={() => {
-                    dispatch({ type: 'updating' })
-                  }}
-                  disabled={!state.disabled}
-                >
-                  +1
-                </Button>
-                <div className="text-base font-light italic">
-                  {state.message}
+              <motion.div
+                key="buttonDisplay"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.3 }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <div className="flex flex-col items-center justify-center gap-y-6 p-4 text-white sm:p-24">
+                  You clicked {state.count}{' '}
+                  {state.count === 1 ? 'time' : 'times'}.
+                  <Button
+                    onClick={() => {
+                      dispatch({ type: 'updating' })
+                    }}
+                    disabled={!state.disabled}
+                  >
+                    +1
+                  </Button>
+                  <div className="text-base font-light italic">
+                    {state.message}
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             )}
           </Boundary>
         </Boundary>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getHighlighter } from 'shiki'
+import { SkeletonCode } from '@/ui/skeleton-code'
 
 export const CodeDisplay = ({
   code,
@@ -46,17 +47,23 @@ export const CodeDisplay = ({
   }, [highlighter, currentLine])
 
   useEffect(() => {
-    let interval: NodeJS.Timeout | undefined
-    const totalLines = code.split('\n').length - 1
-    if (currentLine < totalLines) {
-      interval = setInterval(() => {
-        setCurrentLine((prevLine) => prevLine + 1)
-      }, 300)
-    } else {
-      onAnimationComplete()
+    if (highlighter) {
+      let interval: NodeJS.Timeout | undefined
+      const totalLines = code.split('\n').length - 1
+      if (currentLine < totalLines) {
+        interval = setInterval(() => {
+          setCurrentLine((prevLine) => prevLine + 1)
+        }, 300)
+      } else {
+        onAnimationComplete()
+      }
+      return () => clearInterval(interval)
     }
-    return () => clearInterval(interval)
-  }, [code, currentLine, onAnimationComplete])
+  }, [code, highlighter, currentLine, onAnimationComplete])
+
+  if (!highlightedCode) {
+    return <SkeletonCode />
+  }
 
   return (
     <div
