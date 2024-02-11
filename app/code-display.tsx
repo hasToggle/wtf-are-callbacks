@@ -1,65 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { getHighlighter } from 'shiki';
+import React, { useState, useEffect } from 'react'
+import { getHighlighter } from 'shiki'
 
-export const CodeDisplay = ({ code }: { code: string }) => {
-  const [highlightedCode, setHighlightedCode] = useState<string[]>([]);
-  const [currentLine, setCurrentLine] = useState<number>(0);
-  const [highlighter, setHighlighter] = useState<any>(null);
+export const CodeDisplay = ({
+  code,
+  onAnimationComplete,
+}: {
+  code: string
+  onAnimationComplete: () => void
+}) => {
+  const [highlightedCode, setHighlightedCode] = useState<string>('')
+  const [currentLine, setCurrentLine] = useState<number>(0)
+  const [highlighter, setHighlighter] = useState<any>(null)
 
   useEffect(() => {
     async function runHighlighter() {
       setHighlighter(
         await getHighlighter({
-          themes: ['nord'],
+          themes: ['ayu-dark'],
           langs: ['jsx'],
         }),
-      );
+      )
     }
-    runHighlighter();
-  }, []);
+    runHighlighter()
+  }, [])
 
   useEffect(() => {
     if (highlighter) {
       const highlighted = highlighter.codeToHtml(code, {
         lang: 'jsx',
-        theme: 'nord',
-      });
+        theme: 'ayu-dark',
+      })
 
-      const lines = highlighted.split('\n');
+      const lines = highlighted.split('\n')
       const highlightedLines = lines
         .map((line: string, index: number) => {
           if (index === currentLine) {
-            return `<span class="highlighted-line">${line}</span>`;
+            return `<span class="highlighted-line">${line}</span>`
           }
-          return line;
+          return line
         })
-        .join('\n');
+        .join('\n')
 
-      if (!highlightedCode.includes(highlightedLines)) {
-        setHighlightedCode([...highlightedCode, highlightedLines]);
-      }
+      setHighlightedCode(highlightedLines)
     }
-  }, [highlighter, currentLine]);
+  }, [highlighter, currentLine])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentLine((prevLine) => {
-        const totalLines = code.split('\n').length - 2;
-        return prevLine < totalLines ? prevLine + 1 : 0;
-      });
-    }, 300);
-
-    return () => clearInterval(interval);
-  }, [code]);
+    let interval: NodeJS.Timeout | undefined
+    const totalLines = code.split('\n').length - 1
+    if (currentLine < totalLines) {
+      interval = setInterval(() => {
+        setCurrentLine((prevLine) => prevLine + 1)
+      }, 300)
+    } else {
+      onAnimationComplete()
+    }
+    return () => clearInterval(interval)
+  }, [code, currentLine, onAnimationComplete])
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: highlightedCode[currentLine] }}
-      style={{
-        whiteSpace: 'pre-wrap',
-        /* fontFamily: '"Fira Code", monospace', */
-        fontSize: '16px',
-      }}
+      className="whitespace-pre-wrap"
+      dangerouslySetInnerHTML={{ __html: highlightedCode }}
     />
-  );
-};
+  )
+}

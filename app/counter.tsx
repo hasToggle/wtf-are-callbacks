@@ -1,24 +1,25 @@
-'use client';
+'use client'
 
-import { useReducer, type Reducer } from 'react';
-import clsx from 'clsx';
-import { Boundary } from '@/ui/boundary';
-import Button from '@/ui/button';
+import { useState, useReducer, type Reducer } from 'react'
+import clsx from 'clsx'
+import { Boundary } from '@/ui/boundary'
+import Button from '@/ui/button'
+import { CodeDisplay } from './code-display'
 
 type State = {
-  count: number;
-  internalCount: number;
-  disabled: boolean;
-  message: string;
-  reactMessage: string;
-  color: 'violet' | 'default' | 'pink' | 'blue' | 'cyan' | 'orange' | undefined;
-  label: string;
-  animateRerendering: boolean;
-};
+  count: number
+  internalCount: number
+  disabled: boolean
+  message: string
+  reactMessage: string
+  color: 'violet' | 'default' | 'pink' | 'blue' | 'cyan' | 'orange' | undefined
+  label: string
+  animateRerendering: boolean
+}
 
 type Action = {
-  type: 'updating' | 'updated';
-};
+  type: 'updating' | 'updated'
+}
 
 const reducer: Reducer<State, Action> = (state, action) => {
   switch (action.type) {
@@ -32,7 +33,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
         disabled: false,
         reactMessage:
           'You are now React. Click the button to re-render the component.',
-      };
+      }
     case 'updated':
       return {
         ...state,
@@ -43,11 +44,11 @@ const reducer: Reducer<State, Action> = (state, action) => {
         animateRerendering: true,
         disabled: true,
         reactMessage: '',
-      };
+      }
     default:
-      throw new Error('Unknown action type.');
+      throw new Error('Unknown action type.')
   }
-};
+}
 
 const initialState: State = {
   count: 0,
@@ -58,10 +59,32 @@ const initialState: State = {
   color: 'violet',
   label: 'React',
   animateRerendering: false,
-};
+}
+
+const codeSnippet = `
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <p>You clicked {count} times.</p>
+      <button onClick={() => setCount(count + 1)}>
+        +1
+      </button>
+    </div>
+  );
+}
+  `.trim()
 
 export function Counter() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const [componentToShow, setComponentToShow] = useState<
+    'codeDisplay' | 'buttonDisplay'
+  >('buttonDisplay')
+
+  const handleAnimationComplete = () => {
+    setComponentToShow('buttonDisplay')
+  }
+
   return (
     <>
       <Boundary
@@ -91,7 +114,8 @@ export function Counter() {
                 focus={!state.disabled}
                 variant="pink"
                 onClick={() => {
-                  dispatch({ type: 'updated' });
+                  dispatch({ type: 'updated' })
+                  setComponentToShow('codeDisplay')
                 }}
                 disabled={state.disabled}
               >
@@ -109,21 +133,33 @@ export function Counter() {
             key={state.count}
             animateRerendering={state.animateRerendering}
           >
-            <div className="flex flex-col items-center justify-center gap-y-6 p-4 text-white sm:p-24">
-              You clicked {state.count} {state.count === 1 ? 'time' : 'times'}.
-              <Button
-                onClick={() => {
-                  dispatch({ type: 'updating' });
-                }}
-                disabled={!state.disabled}
-              >
-                +1
-              </Button>
-              <div className="text-base font-light italic">{state.message}</div>
-            </div>
+            {componentToShow === 'codeDisplay' && (
+              <CodeDisplay
+                code={codeSnippet}
+                onAnimationComplete={handleAnimationComplete}
+              />
+            )}
+
+            {componentToShow === 'buttonDisplay' && (
+              <div className="flex flex-col items-center justify-center gap-y-6 p-4 text-white sm:p-24">
+                You clicked {state.count} {state.count === 1 ? 'time' : 'times'}
+                .
+                <Button
+                  onClick={() => {
+                    dispatch({ type: 'updating' })
+                  }}
+                  disabled={!state.disabled}
+                >
+                  +1
+                </Button>
+                <div className="text-base font-light italic">
+                  {state.message}
+                </div>
+              </div>
+            )}
           </Boundary>
         </Boundary>
       </Boundary>
     </>
-  );
+  )
 }
