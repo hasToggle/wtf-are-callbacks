@@ -1,13 +1,13 @@
-import clsx from 'clsx';
-import { Ping } from './ping';
+import clsx from 'clsx'
+import { Ping } from './ping'
 
 export default function Button({
   variant = 'default',
   focus = false,
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'default' | 'pink';
-  focus?: boolean;
+  variant?: 'default' | 'pink'
+  focus?: boolean
 }) {
   return (
     <span className="relative inline-flex">
@@ -23,5 +23,5 @@ export default function Button({
       />
       {focus && <Ping />}
     </span>
-  );
+  )
 }

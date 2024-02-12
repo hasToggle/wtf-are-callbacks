@@ -7,7 +7,7 @@ This project is partly interactive and partly text with code examples. Specifica
 
 The example is a counter component which increases the `count` by 1. Every time you click a button there’s a
 moment where the counter did not yet update its count. That’s because React is waiting for the browser,
-specifically the event loop of JavaScript's runtime, to say *"all right, you can update the UI now"* and then
+specifically the event loop of JavaScript's runtime, to say _"all right, you can update the UI now"_ and then
 React goes ahead and re-runs the entire counter component from top to bottom but with the updated value count.
 
 ## Running Locally

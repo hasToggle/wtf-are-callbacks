@@ -1,18 +1,18 @@
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import rehypeStringify from 'rehype-stringify';
-import rehypePrettyCode from 'rehype-pretty-code';
+import { unified } from 'unified'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 export async function Code({ code }: { code: string }) {
-  const highlightedCode = await highlightCode(code);
+  const highlightedCode = await highlightCode(code)
   return (
     <section
       dangerouslySetInnerHTML={{
         __html: highlightedCode,
       }}
     />
-  );
+  )
 }
 
 async function highlightCode(code: string) {
@@ -23,7 +23,7 @@ async function highlightCode(code: string) {
       keepBackground: false,
     })
     .use(rehypeStringify)
-    .process(code);
+    .process(code)
 
-  return String(file);
+  return String(file)
 }

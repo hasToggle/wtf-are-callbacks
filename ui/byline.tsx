@@ -1,8 +1,8 @@
-import { Logo } from '@/ui/logo';
+import { Logo } from '@/ui/logo'
 
 export default function Byline() {
   return (
-    <div className="bg-ht-border-gradient inset-x-0 bottom-3 mx-3 rounded-lg p-px shadow-lg shadow-black/20">
+    <div className="inset-x-0 bottom-3 mx-3 rounded-lg bg-ht-border-gradient p-px shadow-lg shadow-black/20">
       <div className="flex flex-row items-center justify-between space-y-2 rounded-lg bg-black p-3.5 lg:px-5 lg:py-3">
         <div className="text-sm text-gray-400">
           <a
@@ -31,5 +31,5 @@ export default function Byline() {
         </div>
       </div>
     </div>
-  );
+  )
 }

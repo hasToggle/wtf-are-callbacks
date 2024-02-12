@@ -1,5 +1,5 @@
-import colors from 'tailwindcss/colors';
-import { Config } from 'tailwindcss';
+import colors from 'tailwindcss/colors'
+import { Config } from 'tailwindcss'
 
 const linkHeadingStyles = {
   color: colors.gray[100],
@@ -12,7 +12,7 @@ const linkHeadingStyles = {
     background: colors.gray[100],
     boxShadow: `0 0 0 0.4rem ${colors.gray[100]}`,
   },
-};
+}
 
 export default {
   content: [
@@ -171,4 +171,4 @@ export default {
     },
   },
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
-} satisfies Config;
+} satisfies Config

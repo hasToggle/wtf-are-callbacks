@@ -1,11 +1,11 @@
-import nextMDX from '@next/mdx';
-import rehypeSlug from 'rehype-slug';
-import rehypePrettyCode from 'rehype-pretty-code';
+import nextMDX from '@next/mdx'
+import rehypeSlug from 'rehype-slug'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
   // options
-};
+}
 
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
@@ -14,9 +14,9 @@ const withMDX = nextMDX({
     remarkPlugins: [],
     rehypePlugins: [[rehypePrettyCode, options], rehypeSlug],
   },
-});
+})
 
 /** @type {import('next').NextConfig} */
-const nextConfig = { reactStrictMode: true };
+const nextConfig = { reactStrictMode: true }
 
-export default withMDX(nextConfig);
+export default withMDX(nextConfig)
