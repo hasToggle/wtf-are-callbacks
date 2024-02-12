@@ -4,15 +4,12 @@ import { Counter } from './counter'
 
 const counterJsx = `
 \`\`\`js showLineNumbers title="counter.jsx"
-export default function Counter() {
+function Counter() {
   const [count, setCount] = useState(0);
-
   return (
     <div>
-        Current: {count}
-      <button
-        onClick={() => setCount(count + 1)}
-      >
+      <p>You clicked {count} times.</p>
+      <button onClick={() => setCount(count + 1)}>
         +1
       </button>
     </div>
@@ -23,15 +20,12 @@ export default function Counter() {
 
 const counterJsx_outdated = `
 \`\`\`js {6} showLineNumbers title="counter.jsx" /count/#v
-export default function Counter() {
+function Counter() {
   const [count, setCount] = useState(0); // still the old value
-
   return (
     <div>
-        Current: {count} // still the old value
-      <button
-        onClick={() => setCount(count + 1)} // still the old value
-      >
+      <p>You clicked {count} times.</p> {/* still the old value */}
+      <button onClick={() => setCount(count + 1)}> {/* still the old value */}
         +1
       </button>
     </div>
@@ -42,15 +36,12 @@ export default function Counter() {
 
 const counterJsx_updating = `
 \`\`\`js {2} showLineNumbers title="counter.jsx" /count/#s
-export default function Counter() {
+function Counter() {
   const [count, setCount] = useState(0); // useState gets the internal value
-
   return (
     <div>
-        Current: {count} // now displaying the new value
-      <button
-        onClick={() => setCount(count + 1)}
-      >
+      <p>You clicked {count} times.</p> {/* now displaying the new value */}
+      <button onClick={() => setCount(count + 1)}>
         +1
       </button>
     </div>
@@ -87,7 +78,7 @@ export default function Home() {
           What does re-rendering mean? It means that React{' '}
           <span className="italic">calls the function component again</span>.
           The entire code inside the <code>counter.jsx</code> function is
-          executed again, from line 1 until line 14. But this time, useState
+          executed again, from line 1 until line 11. But this time, useState
           gets the internal value of the state variable.
         </p>
         {/* @ts-ignore Async Server Component */}
