@@ -72,21 +72,6 @@ export function Counter() {
     setComponentToShow('buttonDisplay')
   }
 
-  const containerVariants = {
-    initial: {
-      opacity: 0,
-      scale: 0.75,
-    },
-    animate: {
-      opacity: 1,
-      scale: 1,
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.75,
-    },
-  }
-
   const flipVariants = {
     initial: {
       rotateY: 90,
@@ -129,32 +114,6 @@ function Counter() {
 }`.trim()
 
   const codeSnippet_2 = `
-function Counter() {
-  const [count, setCount] = useState(0); // count = ${state.internalCount}
-  return (
-    <div>
-      <p>You clicked {count} times.</p>
-      <button onClick={() => setCount(count + 1)}>
-        +1
-      </button>
-    </div>
-  );
-}`.trim()
-
-  const codeSnippet_3 = `
-function Counter() {
-  const [count, setCount] = useState(0); // count = ${state.internalCount}
-  return (
-    <div>
-      <p>You clicked {count} times.</p>
-      <button onClick={() => setCount(count + 1)}>
-        +1
-      </button>
-    </div>
-  );
-}`.trim()
-
-  const codeSnippet_4 = `
 function Counter() {
   const [count, setCount] = useState(0); // count = ${state.internalCount}
   return (
@@ -228,15 +187,15 @@ function Counter() {
                   code={[
                     codeSnippet_0,
                     codeSnippet_1,
+                    codeSnippet_1,
+                    codeSnippet_1,
                     codeSnippet_2,
-                    codeSnippet_3,
-                    codeSnippet_4,
-                    codeSnippet_4,
-                    codeSnippet_4,
-                    codeSnippet_4,
-                    codeSnippet_4,
-                    codeSnippet_4,
-                    codeSnippet_4,
+                    codeSnippet_2,
+                    codeSnippet_2,
+                    codeSnippet_2,
+                    codeSnippet_2,
+                    codeSnippet_2,
+                    codeSnippet_2,
                   ]}
                   onAnimationComplete={handleAnimationComplete}
                 />
