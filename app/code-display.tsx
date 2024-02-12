@@ -67,7 +67,7 @@ export const CodeDisplay = ({
 
   return (
     <div
-      className="whitespace-pre-wrap"
+      className="overflow-scroll whitespace-pre-wrap"
       dangerouslySetInnerHTML={{ __html: highlightedCode }}
     />
   )

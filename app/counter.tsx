@@ -163,7 +163,7 @@ function Counter() {
                 Render
               </Button>
             </span>
-            <div className="mt-2 h-4 text-sm font-normal italic">
+            <div className="mb-12 mt-2 h-3 text-sm font-normal italic sm:mb-0 sm:h-4">
               {state.reactMessage}
             </div>
           </div>
@@ -174,78 +174,79 @@ function Counter() {
             key={state.count}
             animateRerendering={state.animateRerendering}
           >
-            {componentToShow === 'codeDisplay' && (
-              <motion.div
-                key="codeDisplay"
-                variants={flipVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{ duration: 0.5 }}
-              >
-                <CodeDisplay
-                  code={[
-                    codeSnippet_0,
-                    codeSnippet_1,
-                    codeSnippet_1,
-                    codeSnippet_1,
-                    codeSnippet_2,
-                    codeSnippet_2,
-                    codeSnippet_2,
-                    codeSnippet_2,
-                    codeSnippet_2,
-                    codeSnippet_2,
-                    codeSnippet_2,
-                  ]}
-                  onAnimationComplete={handleAnimationComplete}
-                />
-              </motion.div>
-            )}
+            <div className="h-[320px] sm:h-[354px]">
+              {componentToShow === 'codeDisplay' && (
+                <motion.div
+                  key="codeDisplay"
+                  variants={flipVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.5 }}
+                >
+                  <CodeDisplay
+                    code={[
+                      codeSnippet_0,
+                      codeSnippet_1,
+                      codeSnippet_1,
+                      codeSnippet_1,
+                      codeSnippet_2,
+                      codeSnippet_2,
+                      codeSnippet_2,
+                      codeSnippet_2,
+                      codeSnippet_2,
+                      codeSnippet_2,
+                      codeSnippet_2,
+                    ]}
+                    onAnimationComplete={handleAnimationComplete}
+                  />
+                </motion.div>
+              )}
 
-            {componentToShow === 'buttonDisplay' && (
-              <motion.div
-                key="buttonDisplay"
-                variants={flipVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{ duration: 0.3 }}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <div className="flex flex-col items-center justify-center gap-y-6 p-4 text-white sm:p-24">
-                  <div>
-                    You clicked{' '}
-                    <span
-                      className={clsx(
-                        'mx-1 rounded-md bg-slate-700 px-3 py-2',
-                        {
+              {componentToShow === 'buttonDisplay' && (
+                <motion.div
+                  key="buttonDisplay"
+                  variants={flipVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <div className="flex flex-col items-center justify-center gap-y-6 p-4 text-white sm:p-24">
+                    <div>
+                      You clicked{' '}
+                      <span
+                        className={clsx('mx-1 rounded-md px-3 py-2', {
                           'animate-[highlight_1s_ease-in-out_1]':
                             state.disabled,
-                        },
-                      )}
+                          'bg-slate-700': state.disabled,
+                          'bg-slate-800': !state.disabled,
+                        })}
+                      >
+                        {state.count}
+                      </span>{' '}
+                      {state.count === 1 ? 'time' : 'times'}.
+                    </div>
+                    <Button
+                      onClick={() => {
+                        dispatch({ type: 'updating' })
+                      }}
+                      disabled={!state.disabled}
                     >
-                      {state.count}
-                    </span>{' '}
-                    {state.count === 1 ? 'time' : 'times'}.
+                      +1
+                    </Button>
+                    <div className="text-center text-base font-light italic">
+                      {state.message}
+                    </div>
                   </div>
-                  <Button
-                    onClick={() => {
-                      dispatch({ type: 'updating' })
-                    }}
-                    disabled={!state.disabled}
-                  >
-                    +1
-                  </Button>
-                  <div className="text-base font-light italic">
-                    {state.message}
-                  </div>
-                </div>
-              </motion.div>
-            )}
+                </motion.div>
+              )}
+            </div>
           </Boundary>
         </Boundary>
       </Boundary>
