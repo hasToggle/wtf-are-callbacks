@@ -6,7 +6,7 @@ export const CodeDisplay = ({
   code,
   onAnimationComplete,
 }: {
-  code: string
+  code: string[]
   onAnimationComplete: () => void
 }) => {
   const [highlightedCode, setHighlightedCode] = useState<string>('')
@@ -27,7 +27,7 @@ export const CodeDisplay = ({
 
   useEffect(() => {
     if (highlighter) {
-      const highlighted = highlighter.codeToHtml(code, {
+      const highlighted = highlighter.codeToHtml(code[currentLine], {
         lang: 'jsx',
         theme: 'ayu-dark',
       })
@@ -49,7 +49,7 @@ export const CodeDisplay = ({
   useEffect(() => {
     if (highlighter) {
       let interval: NodeJS.Timeout | undefined
-      const totalLines = code.split('\n').length - 1
+      const totalLines = code[currentLine].split('\n').length - 1
       if (currentLine < totalLines) {
         interval = setInterval(() => {
           setCurrentLine((prevLine) => prevLine + 1)
@@ -59,7 +59,7 @@ export const CodeDisplay = ({
       }
       return () => clearInterval(interval)
     }
-  }, [code, highlighter, currentLine, onAnimationComplete])
+  }, [code[currentLine], highlighter, currentLine, onAnimationComplete])
 
   if (!highlightedCode) {
     return <SkeletonCode />

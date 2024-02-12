@@ -62,19 +62,6 @@ const initialState: State = {
   animateRerendering: false,
 }
 
-const codeSnippet = `
-function Counter() {
-  const [count, setCount] = useState(0);
-  return (
-    <div>
-      <p>You clicked {count} times.</p>
-      <button onClick={() => setCount(count + 1)}>
-        +1
-      </button>
-    </div>
-  );
-}`.trim()
-
 export function Counter() {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [componentToShow, setComponentToShow] = useState<
@@ -114,6 +101,71 @@ export function Counter() {
       opacity: 0,
     },
   }
+
+  const codeSnippet_0 = `
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <p>You clicked {count} times.</p>
+      <button onClick={() => setCount(count + 1)}>
+        +1
+      </button>
+    </div>
+  );
+}`.trim()
+
+  const codeSnippet_1 = `
+function Counter() {
+  const [count, setCount] = useState(0); // count = ${state.internalCount}
+  return (
+    <div>
+      <p>You clicked {count} times.</p>
+      <button onClick={() => setCount(count + 1)}>
+        +1
+      </button>
+    </div>
+  );
+}`.trim()
+
+  const codeSnippet_2 = `
+function Counter() {
+  const [count, setCount] = useState(0); // count = ${state.internalCount}
+  return (
+    <div>
+      <p>You clicked {count} times.</p>
+      <button onClick={() => setCount(count + 1)}>
+        +1
+      </button>
+    </div>
+  );
+}`.trim()
+
+  const codeSnippet_3 = `
+function Counter() {
+  const [count, setCount] = useState(0); // count = ${state.internalCount}
+  return (
+    <div>
+      <p>You clicked {count} times.</p>
+      <button onClick={() => setCount(count + 1)}>
+        +1
+      </button>
+    </div>
+  );
+}`.trim()
+
+  const codeSnippet_4 = `
+function Counter() {
+  const [count, setCount] = useState(0); // count = ${state.internalCount}
+  return (
+    <div>
+      <p>You clicked {count} times.</p> {/* count = ${state.internalCount} */}
+      <button onClick={() => setCount(count + 1)}>
+        +1
+      </button>
+    </div>
+  );
+}`.trim()
 
   return (
     <>
@@ -173,7 +225,19 @@ export function Counter() {
                 transition={{ duration: 0.5 }}
               >
                 <CodeDisplay
-                  code={codeSnippet}
+                  code={[
+                    codeSnippet_0,
+                    codeSnippet_1,
+                    codeSnippet_2,
+                    codeSnippet_3,
+                    codeSnippet_4,
+                    codeSnippet_4,
+                    codeSnippet_4,
+                    codeSnippet_4,
+                    codeSnippet_4,
+                    codeSnippet_4,
+                    codeSnippet_4,
+                  ]}
                   onAnimationComplete={handleAnimationComplete}
                 />
               </motion.div>
@@ -199,7 +263,10 @@ export function Counter() {
                     <span
                       className={clsx(
                         'mx-1 rounded-md bg-slate-700 px-3 py-2',
-                        { 'animate-[highlight_1s_ease-in-out_1]': state.disabled },
+                        {
+                          'animate-[highlight_1s_ease-in-out_1]':
+                            state.disabled,
+                        },
                       )}
                     >
                       {state.count}
