@@ -73,8 +73,7 @@ function Counter() {
       </button>
     </div>
   );
-}
-  `.trim()
+}`.trim()
 
 export function Counter() {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -98,6 +97,21 @@ export function Counter() {
     exit: {
       opacity: 0,
       scale: 0.75,
+    },
+  }
+
+  const flipVariants = {
+    initial: {
+      rotateY: 90,
+      opacity: 0,
+    },
+    animate: {
+      rotateY: 0,
+      opacity: 1,
+    },
+    exit: {
+      rotateY: -90,
+      opacity: 0,
     },
   }
 
@@ -152,7 +166,7 @@ export function Counter() {
             {componentToShow === 'codeDisplay' && (
               <motion.div
                 key="codeDisplay"
-                variants={containerVariants}
+                variants={flipVariants}
                 initial="initial"
                 animate="animate"
                 exit="exit"
@@ -168,7 +182,7 @@ export function Counter() {
             {componentToShow === 'buttonDisplay' && (
               <motion.div
                 key="buttonDisplay"
-                variants={containerVariants}
+                variants={flipVariants}
                 initial="initial"
                 animate="animate"
                 exit="exit"
@@ -182,7 +196,12 @@ export function Counter() {
                 <div className="flex flex-col items-center justify-center gap-y-6 p-4 text-white sm:p-24">
                   <div>
                     You clicked{' '}
-                    <span className="mx-1 rounded-md bg-gray-700 px-3 py-2">
+                    <span
+                      className={clsx(
+                        'mx-1 rounded-md bg-slate-700 px-3 py-2',
+                        { 'animate-[highlight_1s_ease-in-out_1]': state.disabled },
+                      )}
+                    >
                       {state.count}
                     </span>{' '}
                     {state.count === 1 ? 'time' : 'times'}.
