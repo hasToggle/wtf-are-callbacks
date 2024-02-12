@@ -14,11 +14,11 @@ const Label = ({
     <div
       className={clsx('rounded-full px-1.5 shadow-[0_0_1px_4px_black]', {
         'bg-gray-800 text-gray-300': color === 'default',
-        'bg-hastoggle-pink text-pink-100': color === 'pink',
-        'bg-hastoggle-blue text-blue-100': color === 'blue',
-        'bg-hastoggle-cyan text-cyan-100': color === 'cyan',
-        'bg-hastoggle-violet text-violet-100': color === 'violet',
-        'bg-hastoggle-orange text-orange-100': color === 'orange',
+        'bg-hastoggle-pink text-pink-50': color === 'pink',
+        'bg-hastoggle-blue text-blue-50': color === 'blue',
+        'bg-hastoggle-cyan text-cyan-50': color === 'cyan',
+        'bg-hastoggle-violet text-violet-50': color === 'violet',
+        'bg-hastoggle-orange text-orange-50': color === 'orange',
         'animate-[highlight_1s_ease-in-out_1]': animateRerendering,
       })}
     >
