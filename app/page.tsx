@@ -19,7 +19,7 @@ function Counter() {
 `
 
 const counterJsx_outdated = `
-\`\`\`js {6} showLineNumbers title="counter.jsx" /count/#v
+\`\`\`js {2,5-6} showLineNumbers title="counter.jsx" /count/#v
 function Counter() {
   const [count, setCount] = useState(0); // still the old value
   return (
@@ -35,7 +35,7 @@ function Counter() {
 `
 
 const counterJsx_updating = `
-\`\`\`js {2} showLineNumbers title="counter.jsx" /count/#s
+\`\`\`js {2,5-6} showLineNumbers title="counter.jsx" /count/#s
 function Counter() {
   const [count, setCount] = useState(0); // useState gets the internal value
   return (
