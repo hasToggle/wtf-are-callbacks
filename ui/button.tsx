@@ -1,13 +1,16 @@
 import clsx from 'clsx'
 import { Ping } from './ping'
+import { Loading } from './loading'
 
 export default function Button({
   variant = 'default',
   focus = false,
+  loading = false,
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'default' | 'pink'
   focus?: boolean
+  loading?: boolean
 }) {
   return (
     <span className="relative inline-flex">
@@ -22,8 +25,11 @@ export default function Button({
           },
         )}
         {...props}
-      />
-      {focus && <Ping />}
+      >
+        {props.children}
+        {focus && <Ping />}
+        {loading && <Loading />}
+      </button>
     </span>
   )
 }

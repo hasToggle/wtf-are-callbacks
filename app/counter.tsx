@@ -16,6 +16,7 @@ type State = {
   color: 'violet' | 'default' | 'pink' | 'blue' | 'cyan' | 'orange' | undefined
   label: string
   animateRerendering: boolean
+  loading: boolean
 }
 
 type Action = {
@@ -34,6 +35,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
         disabled: false,
         reactMessage:
           'You are now React. Click the button to re-render the component.',
+        loading: true,
       }
     case 'updated':
       return {
@@ -45,6 +47,7 @@ const reducer: Reducer<State, Action> = (state, action) => {
         animateRerendering: true,
         disabled: true,
         reactMessage: '',
+        loading: false,
       }
     default:
       throw new Error('Unknown action type.')
@@ -60,6 +63,7 @@ const initialState: State = {
   color: 'violet',
   label: 'React',
   animateRerendering: false,
+  loading: false,
 }
 
 export function Counter() {
@@ -237,8 +241,9 @@ function Counter() {
                         dispatch({ type: 'updating' })
                       }}
                       disabled={!state.disabled}
+                      loading={state.loading}
                     >
-                      +1
+                      {state.loading ? 'brewing ...' : 'Order a cup of ☕'}
                     </Button>
                     <div className="text-center text-base font-light italic">
                       {state.message}

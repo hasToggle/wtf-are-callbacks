@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@heroicons/react": "2.1.1",
+    "@material-tailwind/react": "2.1.9",
     "@mdx-js/loader": "3.0.0",
     "@mdx-js/react": "3.0.0",
     "@next/mdx": "14.1.0",
@@ -34,7 +35,7 @@
     "rehype-stringify": "10.0.0",
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.0",
-    "shiki": "1.1.1",
+    "shiki": "1.2.3",
     "unified": "11.0.4"
   },
   "devDependencies": {

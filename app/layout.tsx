@@ -6,10 +6,10 @@ import { Analytics } from '@vercel/analytics/react'
 export const metadata: Metadata = {
   metadataBase: new URL('https://how-usestate-works.vercel.app'),
   title: {
-    default: 'React useState',
-    template: '%s | React useState',
+    default: 'WTF are Callbacks?!',
+    template: '%s | WTF are Callbacks?!',
   },
-  description: 'A playground to explore how useState works in React.',
+  description: 'A playground to explore callbacks.',
 }
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
         <div className="mx-auto max-w-4xl space-y-8 px-2 pt-20 lg:px-8 lg:py-8">
           <div className="rounded-lg bg-ht-border-gradient p-px shadow-lg shadow-black/20">
             <div className="rounded-lg bg-black py-2 text-center">
-              <h2>How useState works in React</h2>
+              <h2>WTF are Callbacks?!</h2>
             </div>
           </div>
 
